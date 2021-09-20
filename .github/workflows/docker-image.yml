@@ -7,7 +7,7 @@ on:
 jobs:
   docker:
     env:
-      IMGTAG: sasfeszek/unit8:$GITHUB_SHA
+      IMGTAG: sasfeszek/unit8:${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
       -

@@ -26,4 +26,4 @@ def weather_redirect():
     return redirect(url_for(f'city_weather', city=g.city))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

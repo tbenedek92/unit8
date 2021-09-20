@@ -26,5 +26,5 @@ jobs:
         with:
           push: true
           tags: ${{ env.IMGTAG }}
-          build-args: ${{ secrets.OPEN_WEATHER_API_KEY }}
+          build-args: OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }}
           

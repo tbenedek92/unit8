@@ -28,11 +28,3 @@ jobs:
           tags: ${{ env.IMGTAG }}
           build-args: ${{ secrets.OPEN_WEATHER_API_KEY }}
           
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag unit8:$GITHUB_SHA --build-arg OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }}

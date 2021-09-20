@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: sasfeszek/unit8:$GITHUB_SHA
+          tags: sasfeszek/unit8:latest
           build-args: ${{ secrets.OPEN_WEATHER_API_KEY }}
           
   build:

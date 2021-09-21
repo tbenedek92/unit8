@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: unit8-prep
+  name: unit8-prep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unit8-prep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: unit8-prep
+    spec:
+      containers:
+      - image: sasfeszek/unit8:e980ea98fa0743d7d5ae120f2b035fa63516dcb0
+        name: unit8-prep
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: unit8-prep
+  name: unit8-prep
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: unit8-prep
+  type: LoadBalancer
+status:
+  loadBalancer: {}

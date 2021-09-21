@@ -34,5 +34,5 @@ jobs:
         with:
           files: 'deployment.yaml'
         env:
-          spec.template.spec.containers[0].image: ${{ env.IMGTAG }}
+          spec.template.metadata.labels.app: ${{ env.IMGTAG }}
           

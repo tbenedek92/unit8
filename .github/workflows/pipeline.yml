@@ -34,7 +34,7 @@ jobs:
         with:
           files: 'deployment.yaml'
         env:
-          spec.template.spec.containers.image: ${{ env.IMGTAG }}
+          spec.template.spec.containers.0.image: ${{ env.IMGTAG }}
       - name: test output
         run: cat deployment.yaml
           

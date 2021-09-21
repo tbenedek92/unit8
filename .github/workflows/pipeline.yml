@@ -35,4 +35,6 @@ jobs:
           files: 'deployment.yaml'
         env:
           spec.template.metadata.labels.app: ${{ env.IMGTAG }}
+      - name: test output
+        run: cat deployment.yaml
           

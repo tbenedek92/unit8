@@ -33,7 +33,7 @@ jobs:
         with:
           files: 'deployment.yaml'
         env:
-          spec.template.spec.containers[0].image: ${{ env.IMGTAG }}
+          image: ${{ env.IMGTAG }}
           url: https://github.com/${{github.repository}}
 
           

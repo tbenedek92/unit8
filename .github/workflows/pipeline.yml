@@ -35,6 +35,9 @@ jobs:
           files: 'deployment.yaml'
         env:
           spec.template.spec.containers.0.image: ${{ env.IMGTAG }}
-      - name: test output
-        run: cat deployment.yaml
-          
+      - 
+        name: deploy to cluster
+        uses: steebchen/kubectl@v2.0.0
+        with: # defaults to latest kubectl binary version
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          command: apply -f deployment.yaml 

@@ -27,4 +27,12 @@ jobs:
           push: true
           tags: ${{ env.IMGTAG }}
           build-args: OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }}
+      - uses: actions/checkout@v2
+      -
+        name: Variable injection
+        uses: microsoft/variable-substitution@v1 
+        with:
+          files: 'deployment.yaml'
+        env:
+          spec.template.spec.containers[0].image: ${{ env.IMGTAG }}
           

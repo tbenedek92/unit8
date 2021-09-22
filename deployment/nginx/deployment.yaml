@@ -18,7 +18,7 @@ spec:
         app: unit8-prep
     spec:
       containers:
-      - image: sasfeszek/unit8:e980ea98fa0743d7d5ae120f2b035fa63516dcb0
+      - image: sasfeszek/unit8:70d96f7d0cb5186f94d54eca82d7675ff31e8497
         name: unit8-prep
         resources: {}
       - image: nginx:1.21

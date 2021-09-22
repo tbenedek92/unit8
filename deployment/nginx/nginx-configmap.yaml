@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  nginx-sidecar.conf: "server {\n  listen 8080 default_server;\n  listen [::]:8080 default_server;\n\n
+    \ server_name 192.46.238.226;\n\n  location / {\n      if ($http_x_forwarded_proto
+    = 'http') {\n         return 301 https://$server_name$request_uri;   \n    }\n
+    \     proxy_pass http://localhost:5000/;\n  }\n}\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx-sidecar

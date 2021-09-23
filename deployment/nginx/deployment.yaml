@@ -20,6 +20,9 @@ spec:
       containers:
       - image: sasfeszek/unit8:70d96f7d0cb5186f94d54eca82d7675ff31e8497
         name: unit8-prep
+        env:
+          - name: PYTHONUNBUFFERED
+            value: "0"
         resources: {}
       - image: nginx:1.21
         name: nginx

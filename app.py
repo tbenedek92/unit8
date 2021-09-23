@@ -56,6 +56,5 @@ def define_weather_metrics(frequency=30):
 
 
 if __name__ == '__main__':
-    print("test msg")
     threading.Thread(target=define_weather_metrics, args=[60]).start()
     app.run(host='0.0.0.0')

@@ -46,7 +46,7 @@ def define_weather_metrics(frequency=30):
     while True:
         for city, gauge in gauge_dict.items():
             try:
-                weather = Weather(api_key='2c8b9ce56ec6c9c1cb144355157f5c7e', city=city)
+                weather = Weather(api_key=API_KEY, city=city)
                 temp=weather.get_temp_c()
                 gauge.set(temp)
                 print(city, temp)
@@ -58,5 +58,5 @@ def define_weather_metrics(frequency=30):
 
 
 if __name__ == '__main__':
-    threading.Thread(target=define_weather_metrics, args=[60]).start()
+    threading.Thread(target=define_weather_metrics, args=[120]).start()
     app.run(host='0.0.0.0')

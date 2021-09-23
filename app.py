@@ -36,11 +36,6 @@ def weather_redirect():
     return redirect(url_for(f'city_weather', city=g.city))
 
 
-def set_metrics(city):
-    weather = Weather(api_key=API_KEY, city=city)
-    return weather.get_temp_c()
-
-
 def define_weather_metrics(frequency=30):
     city_list = ["Zurich", "Budapest"]
     gauge_dict = {}
@@ -55,6 +50,7 @@ def define_weather_metrics(frequency=30):
                 gauge.set(temp)
                 print(city, temp)
             except ConnectionError:
+                print(f'ConnectionError cannnot update {city}\' temp')
                 continue
         time.sleep(frequency)
 

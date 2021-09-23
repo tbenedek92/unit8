@@ -2,12 +2,12 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ empty ]
 
 jobs:
   docker:
     env:
-      IMGTAG: sasfeszek/unit8:${{ github.sha }}
+      IMGTAG: sasfeszek/unit8-empty:${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
       -
@@ -26,7 +26,6 @@ jobs:
         with:
           push: true
           tags: ${{ env.IMGTAG }}
-          build-args: OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }}
       - uses: actions/checkout@v2
       -
         name: Variable injection
@@ -41,4 +40,4 @@ jobs:
         with: # defaults to latest kubectl binary version
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: v1.21.0
-          command: apply -f deployment -n basic
+          command: apply -f deployment -n empty

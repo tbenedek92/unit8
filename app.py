@@ -37,6 +37,7 @@ def weather_redirect():
 
 
 def define_weather_metrics(frequency=30):
+    import sys
     city_list = ["Zurich", "Budapest"]
     gauge_dict = {}
     for city in city_list:
@@ -52,6 +53,7 @@ def define_weather_metrics(frequency=30):
             except ConnectionError:
                 print(f'ConnectionError cannnot update {city}\' temp')
                 continue
+        sys.stdout.flush()
         time.sleep(frequency)
 
 

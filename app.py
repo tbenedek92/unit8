@@ -51,7 +51,9 @@ def define_weather_metrics(frequency=30):
         for city, gauge in gauge_dict.items():
             try:
                 weather = Weather(api_key=API_KEY, city=city)
-                gauge.set_function(weather.get_temp_c)
+                temp=weather.get_temp_c()
+                gauge.set(temp)
+                print(city, temp)
             except ConnectionError:
                 continue
         time.sleep(frequency)

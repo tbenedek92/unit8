@@ -49,3 +49,4 @@ jobs:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: v1.21.0
           command: apply -f deployment/prometheus -n prometheus
+

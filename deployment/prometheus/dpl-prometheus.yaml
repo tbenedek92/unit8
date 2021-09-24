@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: prometheus
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - image: prom/prometheus
+        name: prometheus
+        resources: {}
+        volumeMounts:
+          - name: prometheus-conf
+            mountPath: "/etc/prometheus"
+          - name: prometheus-data
+            mountPath: "/prometheus"
+        ports:
+          - containerPort: 80
+      volumes:
+        - name: prometheus-conf
+          configMap:
+            name: cm-prometheus
+        - name: prometheus-data
+          persistentVolumeClaim:
+            claimName: pvc-prometheus
+      securityContext:
+        runAsUser: 0
+status: {}

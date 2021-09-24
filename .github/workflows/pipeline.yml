@@ -32,7 +32,7 @@ jobs:
         name: Variable injection
         uses: microsoft/variable-substitution@v1 
         with:
-          files: 'deployment/deployment.yaml'
+          files: 'deployment/nginx/deployment.yaml'
         env:
           spec.template.spec.containers.0.image: ${{ env.IMGTAG }}
       - 
@@ -41,4 +41,12 @@ jobs:
         with: # defaults to latest kubectl binary version
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: v1.21.0
-          command: apply -f deployment -n basic
+          command: apply -f deployment/nginx -n prometheus
+      - 
+        name: Deploy deployment to cluster
+        uses: steebchen/kubectl@v2.0.0
+        with: # defaults to latest kubectl binary version
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          version: v1.21.0
+          command: apply -f deployment/prometheus -n prometheus
+

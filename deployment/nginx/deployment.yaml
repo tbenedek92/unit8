@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: unit8-prep
+  name: unit8-prep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unit8-prep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: unit8-prep
+    spec:
+      containers:
+      - image: sasfeszek/unit8:70d96f7d0cb5186f94d54eca82d7675ff31e8497
+        name: unit8-prep
+        env:
+          - name: PYTHONUNBUFFERED
+            value: "0"
+        resources: {}
+      - image: nginx:1.21
+        name: nginx
+        volumeMounts:
+          - name: nginx-conf
+            mountPath: "/etc/nginx/conf.d"
+          - name: nginx-log
+            mountPath: "/var/log/nginx"
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-sidecar
+        - name: nginx-log
+          persistentVolumeClaim:
+            claimName: pvc-nginx-log
+status: {}
+

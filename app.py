@@ -49,10 +49,12 @@ def define_weather_metrics(frequency=30):
                 weather = Weather(api_key=API_KEY, city=city)
                 temp=weather.get_temp_c()
                 gauge.set(temp)
-                print(city, temp)
+                print(city, temp, flush=True)
             except ConnectionError:
-                print(f'ConnectionError cannnot update {city}\' temp')
+                print(f'ConnectionError cannnot update {city}\' temp', flush=True)
                 continue
+            except Exception as e:
+                print(e, flush=True)
         sys.stdout.flush()
         time.sleep(frequency)
 
